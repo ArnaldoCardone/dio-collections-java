@@ -1,6 +1,8 @@
 package pesquisa;
 
-public class Livro {
+import java.util.Comparator;
+
+public class Livro implements Comparable<Livro>{
     private String titulo;
     private String autor;
     private int anoPublicacao;
@@ -42,5 +44,20 @@ public class Livro {
                 ", autor='" + autor + '\'' +
                 ", anoPublicacao=" + anoPublicacao +
                 '}';
+    }
+
+
+    @Override
+    public int compareTo(Livro o) {
+        return Integer.compare(anoPublicacao, o.anoPublicacao);
+    }
+
+}
+
+class ComparatorPorTitulo implements Comparator<Livro>{
+
+    @Override
+    public int compare(Livro o1, Livro o2) {
+        return CharSequence.compare(o1.getTitulo(),o2.getTitulo());
     }
 }

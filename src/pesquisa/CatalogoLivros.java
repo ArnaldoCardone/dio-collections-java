@@ -1,6 +1,7 @@
 package pesquisa;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CatalogoLivros {
@@ -54,18 +55,33 @@ public class CatalogoLivros {
         return livroRet;
     }
 
+    public List<Livro> ordenaPorAnoPublicacao(){
+        List<Livro> livroPorAno = new ArrayList<>(livroList);
+        Collections.sort(livroPorAno);
+        return  livroPorAno;
+    }
+
+    public List<Livro> ordenaPorTitulo(){
+        List<Livro> livroPorTitulo = new ArrayList<>(livroList);
+        livroPorTitulo.sort(new ComparatorPorTitulo());
+        return livroPorTitulo;
+    }
+
     public static void main(String[] args){
         CatalogoLivros catalogoLivros = new CatalogoLivros();
         catalogoLivros.adicionarLivro("Titulo1", "Autor 1", 2025);
         catalogoLivros.adicionarLivro("Titulo2", "Autor 2", 2024);
-        catalogoLivros.adicionarLivro("Titulo3", "Autor 1", 2024);
-        catalogoLivros.adicionarLivro("Titulo4", "Autor 3", 1999);
-        catalogoLivros.adicionarLivro("Titulo5", "Autor 4", 2024);
-        catalogoLivros.adicionarLivro("Titulo1", "Autor 5", 2023);
+        catalogoLivros.adicionarLivro("Titulo4", "Autor 1", 2024);
+        catalogoLivros.adicionarLivro("Titulo5", "Autor 3", 1999);
+        catalogoLivros.adicionarLivro("Titulo3", "Autor 4", 2024);
+        catalogoLivros.adicionarLivro("Titulo1", "Autor 5", 1990);
 
         System.out.println(catalogoLivros.pesquisarPorAutor("Autor 1"));
         System.out.println(catalogoLivros.pesquisarPorIntervaloAno(1900,2000));
         System.out.println((catalogoLivros.pesquisarPorTitulo("Titulo1")));
 
+        System.out.println(catalogoLivros.ordenaPorAnoPublicacao());
+
+        System.out.println(catalogoLivros.ordenaPorTitulo());
     }
 }
